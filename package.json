@@ -1,0 +1,32 @@
+{
+  "name": "robotframework-cheerio",
+  "version": "0.0.0",
+  "description": "Robot Framework keyword library to use with the node.js remote server implementation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bulkan/robotframework-cheerio.git"
+  },
+  "keywords": [
+    "node.js",
+    "python",
+    "cheerio",
+    "testing",
+    "keyword",
+    "robot",
+    "framework"
+  ],
+  "author": "Bulkan Evcimen",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/bulkan/robotframework-cheerio/issues"
+  },
+  "dependencies": {
+    "should": "~1.2.2",
+    "cheerio": "~0.12.2",
+    "mocha": "~1.12.1"
+  }
+}
