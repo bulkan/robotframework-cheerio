@@ -1,10 +1,10 @@
 {
   "name": "robotframework-cheerio",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Robot Framework keyword library to use with the node.js remote server implementation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   "dependencies": {
     "should": "~1.2.2",
     "cheerio": "~0.12.2",
-    "mocha": "~1.12.1"
+    "mocha": "~1.12.1",
+    "xmlrpc": "~1.1.0"
   }
 }
