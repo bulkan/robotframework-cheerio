@@ -28,6 +28,7 @@
     "should": "~1.2.2",
     "cheerio": "~0.12.2",
     "mocha": "~1.12.1",
-    "xmlrpc": "~1.1.0"
+    "xmlrpc": "~1.1.0",
+    "robotremoteserver": "0.0.2"
   }
 }
