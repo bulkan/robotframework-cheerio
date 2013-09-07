@@ -30,7 +30,7 @@ describe('CheerioLibrary', function() {
 
   it('get_text returns data', function(done){
     var client = new xmlrpc.createClient(options, false);
-    client.methodCall('run_keyword', ['get text', '.apple'], function(err, value){
+    client.methodCall('run_keyword', ['get text', ['.apple']], function(err, value){
       if (err) return done(err);
       value.should.have.property('return');
       value.should.have.property('status');
