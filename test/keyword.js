@@ -8,11 +8,14 @@ describe('CheerioLibrary', function() {
   var server = null;
 
   before(function(done){
-    var html = '<ul id="fruits"><li class="apple">Apple</li><li class="orange">Orange</li><li class="pear">Pear</li></ul>';
     server = new RemoteServer(options, [CheerioLibrary]);
     server.start_remote_server();
     // need to give the server a litte time to start
-    setTimeout(done, 100);
+    setTimeout(function(){
+      var html = encodeURIComponent('<ul id="fruits"><li class="apple">Apple</li><li class="orange">Orange</li><li class="pear">Pear</li></ul>');
+      var client = new xmlrpc.createClient(options, false);
+      client.methodCall('run_keyword', ['load', html], done);
+    }, 100);
   });
 
   it('has keywords from cheerio', function(done){
