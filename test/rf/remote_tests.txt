@@ -1,0 +1,16 @@
+*** Settings ***
+Library  OperatingSystem
+Library    Remote    http://localhost:${PORT}
+
+*** Variables ***
+${PORT}    8270
+
+*** Test Cases ***
+
+Load HTML
+   ${html}=  Get Binary File  ${CURDIR}${/}index.html
+   Log  ${html}
+   Load   ${html}
+   ${text}=   Get Text  .apple
+   Should Be Equal As Strings  ${text}  Apple
+
