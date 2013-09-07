@@ -1,4 +1,5 @@
 var xmlrpc       = require('xmlrpc')
+  , RemoteServer = require('rfremoteserver')
   , CheerioLibrary = require('../lib/keywords');
 
 var options = {host: 'localhost', port: 4242};
@@ -8,7 +9,7 @@ describe('CheerioLibrary', function() {
 
   before(function(done){
     var html = '<ul id="fruits"><li class="apple">Apple</li><li class="orange">Orange</li><li class="pear">Pear</li></ul>';
-    server = new CheerioLibrary(options, html);
+    server = new RemoteServer(options, [CheerioLibrary]);
     server.start_remote_server();
     // need to give the server a litte time to start
     setTimeout(done, 100);
