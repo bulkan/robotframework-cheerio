@@ -7,10 +7,19 @@ ${PORT}    8270
 
 *** Test Cases ***
 
-Load HTML
+Text
    ${html}=  Get Binary File  ${CURDIR}${/}index.html
-   Log  ${html}
    Load   ${html}
-   ${text}=   Get Text  .apple
+   ${text}=   Text  .apple
    Should Be Equal As Strings  ${text}  Apple
 
+
+Attr
+   ${html}=  Get Binary File  ${CURDIR}${/}index.html
+   Load   ${html}     True
+   ${attr}  Attr  ul  id
+   Log  ${attr}
+   Should Be Equal As Strings  ${attr}   fruits
+   Attr  ul  id   new_fruits
+   ${attr}  Attr  ul  id
+   Should Be Equal As Strings  ${attr}  new_fruits

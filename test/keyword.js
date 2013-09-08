@@ -1,5 +1,5 @@
-var xmlrpc       = require('xmlrpc')
-  , RemoteServer = require('rfremoteserver')
+var xmlrpc         = require('xmlrpc')
+  , RemoteServer   = require('rfremoteserver')
   , CheerioLibrary = require('../lib/keywords');
 
 var options = {host: 'localhost', port: 4242};
@@ -14,7 +14,7 @@ describe('CheerioLibrary', function() {
     setTimeout(function(){
       var html = encodeURIComponent('<ul id="fruits"><li class="apple">Apple</li><li class="orange">Orange</li><li class="pear">Pear</li></ul>');
       var client = new xmlrpc.createClient(options, false);
-      client.methodCall('run_keyword', ['load', html], done);
+      client.methodCall('run_keyword', ['load', [html]], done);
     }, 100);
   });
 
@@ -23,19 +23,39 @@ describe('CheerioLibrary', function() {
     client.methodCall('get_keyword_names', null, function(err, value){
       if (err) return done(err);
       value.should.not.be.empty;
-      value.should.include('get text');
+      value.should.include('text');
       done();
     });
   });
 
-  it('get_text returns data', function(done){
+  it('text returns data', function(done){
     var client = new xmlrpc.createClient(options, false);
-    client.methodCall('run_keyword', ['get text', ['.apple']], function(err, value){
+    client.methodCall('run_keyword', ['text', ['.apple']], function(err, value){
       if (err) return done(err);
       value.should.have.property('return');
       value.should.have.property('status');
       value.status.should.be.equal('PASS');
       value.return.should.be.equal('Apple');
+      done();
+    });
+  });
+
+
+  it('attr is able returns attribute value', function(done){
+    var client = new xmlrpc.createClient(options, false);
+    client.methodCall('run_keyword', ['attr', ['ul', 'id']], function(err, value){
+      if (err) return done(err);
+      value.return.should.be.equal('fruits');
+      done();
+    });
+  });
+
+
+  it('attr is able set an attribute value', function(done){
+    var client = new xmlrpc.createClient(options, false);
+    client.methodCall('run_keyword', ['attr', ['ul', 'id', 'meyveler']], function(err, value){
+      if (err) return done(err);
+      value.return.should.be.equal('meyveler');
       done();
     });
   });
