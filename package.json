@@ -1,6 +1,6 @@
 {
   "name": "robotframework-cheerio",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Robot Framework keyword library to use with the node.js remote server implementation",
   "main": "index.js",
   "scripts": {
