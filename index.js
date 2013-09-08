@@ -1,0 +1,8 @@
+var RemoteServer = require('rfremoteserver')
+  , CheerioLibrary = require('./lib/keywords');
+
+
+var options = {host: 'localhost', port: 8270};
+
+server = new RemoteServer(options, [CheerioLibrary]);
+server.start_remote_server();
