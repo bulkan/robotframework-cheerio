@@ -23,3 +23,12 @@ Attr
    Attr  ul  id   new_fruits
    ${attr}  Attr  ul  id
    Should Be Equal As Strings  ${attr}  new_fruits
+
+
+Remove Attr
+   ${html}=  Get Binary File  ${CURDIR}${/}index.html
+   Load   ${html}     True
+   Remove Attr  ul  id
+   ${attr}  Attr  ul  id
+   Log  ${attr}
+   Should Be Empty  ${attr}
