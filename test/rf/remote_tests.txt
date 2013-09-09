@@ -32,3 +32,16 @@ Remove Attr
    ${attr}  Attr  ul  id
    Log  ${attr}
    Should Be Empty  ${attr}
+
+
+Has Class
+   ${html}=  Get Binary File  ${CURDIR}${/}index.html
+   Load   ${html}     True
+   ${ret}=  Has Class  ul  fruits
+   Should Be Equal As Strings  ${ret}  False
+
+   ${ret}=  Has Class  ul>li  orange
+   Should Be Equal As Strings  ${ret}  True
+
+   ${ret}=  Has Class  \#contentdiv  content
+   Should Be Equal As Strings  ${ret}  True
