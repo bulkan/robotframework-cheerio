@@ -41,17 +41,17 @@ describe('CheerioLibrary', function() {
   });
 
 
-  it('attr is able returns attribute value', function(done){
+  it('attr is able return the attribute value', function(done){
     var client = new xmlrpc.createClient(options, false);
     client.methodCall('run_keyword', ['attr', ['ul', 'id']], function(err, value){
       if (err) return done(err);
+      value.status.should.be.equal('PASS');
       value.return.should.be.equal('fruits');
       done();
     });
   });
 
-
-  it('attr is able set an attribute value', function(done){
+  it('attr is able to set an attribute value', function(done){
     var client = new xmlrpc.createClient(options, false);
     client.methodCall('run_keyword', ['attr', ['ul', 'id', 'meyveler']], function(err, value){
       if (err) return done(err);
@@ -59,4 +59,18 @@ describe('CheerioLibrary', function() {
       done();
     });
   });
+
+  it('remove_attr is able to remove an attribute', function(done){
+    var client = new xmlrpc.createClient(options, false);
+    client.methodCall('run_keyword', ['remove_attr', ['ul', 'id']], function(err, value){
+      if (err) return done(err);
+      value.status.should.be.equal('PASS');
+      client.methodCall('run_keyword', ['attr', ['ul', 'id']], function(err, value){
+        value.status.should.be.equal('PASS');
+        value.return.should.be.equal('');
+        done();
+      });
+    });
+  });
+
 });
