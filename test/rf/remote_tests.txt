@@ -45,3 +45,12 @@ Has Class
 
    ${ret}=  Has Class  \#contentdiv  content
    Should Be Equal As Strings  ${ret}  True
+
+
+Add Class
+   ${html}=  Get Binary File  ${CURDIR}${/}index.html
+   Load   ${html}     True
+
+   Add Class  ul   meyveler
+   ${ret}=  Has Class  ul  meyveler
+   Should Be Equal As Strings  ${ret}  True
