@@ -6,6 +6,9 @@
   "scripts": {
     "test": "make test"
   },
+  "bin": {
+    "rf-cheerio": "./bin/rf-cheerio",
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:bulkan/robotframework-cheerio.git"
