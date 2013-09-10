@@ -6,6 +6,7 @@ var options = {host: 'localhost', port: 4242};
 
 describe('CheerioLibrary', function() {
   var server = null;
+  var client = null;
 
   before(function(done){
     server = new RemoteServer(options, [CheerioLibrary]);
@@ -13,13 +14,12 @@ describe('CheerioLibrary', function() {
     // need to give the server a litte time to start
     setTimeout(function(){
       var html = encodeURIComponent('<ul id="fruits"><li class="apple">Apple</li><li class="orange">Orange</li><li class="pear">Pear</li></ul>');
-      var client = new xmlrpc.createClient(options, false);
+      client = new xmlrpc.createClient(options, false);
       client.methodCall('run_keyword', ['load', [html]], done);
     }, 100);
   });
 
   it('has keywords from cheerio', function(done){
-    var client = new xmlrpc.createClient(options, false);
     client.methodCall('get_keyword_names', null, function(err, value){
       if (err) return done(err);
       value.should.not.be.empty;
@@ -29,7 +29,6 @@ describe('CheerioLibrary', function() {
   });
 
   it('text returns data', function(done){
-    var client = new xmlrpc.createClient(options, false);
     client.methodCall('run_keyword', ['text', ['.apple']], function(err, value){
       if (err) return done(err);
       value.should.have.property('return');
@@ -42,7 +41,6 @@ describe('CheerioLibrary', function() {
 
 
   it('attr is able return the attribute value', function(done){
-    var client = new xmlrpc.createClient(options, false);
     client.methodCall('run_keyword', ['attr', ['ul', 'id']], function(err, value){
       if (err) return done(err);
       value.status.should.be.equal('PASS');
@@ -52,7 +50,6 @@ describe('CheerioLibrary', function() {
   });
 
   it('attr is able to set an attribute value', function(done){
-    var client = new xmlrpc.createClient(options, false);
     client.methodCall('run_keyword', ['attr', ['ul', 'id', 'meyveler']], function(err, value){
       if (err) return done(err);
       value.return.should.be.equal('meyveler');
@@ -61,7 +58,6 @@ describe('CheerioLibrary', function() {
   });
 
   it('remove_attr is able to remove an attribute', function(done){
-    var client = new xmlrpc.createClient(options, false);
     client.methodCall('run_keyword', ['remove_attr', ['ul', 'id']], function(err, value){
       if (err) return done(err);
       value.status.should.be.equal('PASS');
