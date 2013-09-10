@@ -7,7 +7,7 @@
     "test": "make test"
   },
   "bin": {
-    "rf-cheerio": "./bin/rf-cheerio",
+    "rf-cheerio": "./bin/rf-cheerio"
   },
   "repository": {
     "type": "git",
