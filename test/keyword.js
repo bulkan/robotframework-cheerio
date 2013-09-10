@@ -1,4 +1,5 @@
-var xmlrpc         = require('xmlrpc')
+var fs             = require('fs')
+  , xmlrpc         = require('xmlrpc')
   , RemoteServer   = require('rfremoteserver')
   , CheerioLibrary = require('../lib/keywords');
 
@@ -13,9 +14,12 @@ describe('CheerioLibrary', function() {
     server.start_remote_server();
     // need to give the server a litte time to start
     setTimeout(function(){
-      var html = encodeURIComponent('<ul id="fruits"><li class="apple">Apple</li><li class="orange">Orange</li><li class="pear">Pear</li></ul>');
-      client = new xmlrpc.createClient(options, false);
-      client.methodCall('run_keyword', ['load', [html]], done);
+      fs.readFile(__dirname + '/rf/index.html', function(err, data){
+        if (err) return done(err);
+        client = new xmlrpc.createClient(options, false);
+        client.methodCall('run_keyword', ['load', [encodeURIComponent(data), true]], done);
+      });
+      
     }, 100);
   });
 
@@ -68,5 +72,15 @@ describe('CheerioLibrary', function() {
       });
     });
   });
+
+  it('allows us to check for classes on elements', function(done){
+    client.methodCall('run_keyword', ['has_class', ['#contentdiv', 'content']], function(err, value){
+      if (err) return done(err);
+      value.status.should.be.equal('PASS');
+      value.return.should.be.equal(true);
+      done();
+    });
+  });
+
 
 });
