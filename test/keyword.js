@@ -19,7 +19,7 @@ describe('CheerioLibrary', function() {
         client = new xmlrpc.createClient(options, false);
         client.methodCall('run_keyword', ['load', [encodeURIComponent(data), true]], done);
       });
-      
+
     }, 100);
   });
 
@@ -82,5 +82,17 @@ describe('CheerioLibrary', function() {
     });
   });
 
+  it('can add a class to an element', function(done){
+    client.methodCall('run_keyword', ['add_class', ['#contentdiv', 'meyveler']], function(err, value){
+      if (err) return done(err);
+      value.status.should.be.equal('PASS');
+      client.methodCall('run_keyword', ['has_class', ['#contentdiv', 'meyveler']], function(err, value){
+        if (err) return done(err);
+        value.status.should.be.equal('PASS');
+        value.return.should.be.equal(true);
+        done();
+      });
+    })
+  });
 
 });
