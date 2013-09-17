@@ -1,7 +1,7 @@
 robotframework-cheerio
 ======================
 
-[![NPM](https://nodei.co/npm/robotframework-cheerio.png)](https://nodei.co/npm/robotframework-cheerio/) 
+[![NPM](https://nodei.co/npm/robotframework-cheerio.png)](https://nodei.co/npm/robotframework-cheerio/) [![NPM](https://nodei.co/npm-dl/robotframework-cheerio.png?months=1)](https://nodei.co/npm/robotframework-cheerio/)
 
 Example keyword library for cheerio.  It uses https://github.com/bulkan/robotremoteserverjs 
 
